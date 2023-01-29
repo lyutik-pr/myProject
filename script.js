@@ -6,3 +6,5 @@ let fullPrice = 11;
 let adaptive = "adaptive";
 alert ("Hello");
 console.log ("Ok");
+
+title = "The first project";
