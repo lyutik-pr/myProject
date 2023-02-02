@@ -1,6 +1,6 @@
 'use strict';
 
-let title = prompt("Как называется ваш проект?", "Верстка сайта");
+let title = prompt("Как называется ваш проект?", "верстка сайта");
 let screens = prompt("Какие типы экранов нужно разработать?", "Простые, Сложные, Интерактивные");
 let screenPrice = +prompt("Сколько будет стоить данная работа?", 12000);
 let adaptive = confirm("Нужен ли адаптив на сайте?");
@@ -61,4 +61,4 @@ rollbackMessage = getRollbackMessage();
 console.log(allServicePrices);
 console.log(fullPrice);
 console.log(servicePercentPrice);
-console.log(typeof title);
+console.log(title, typeof title);
