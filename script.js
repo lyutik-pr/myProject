@@ -30,22 +30,18 @@ const asking = function () {
 const getAllServicePrices = function () {
     let sum = 0;
     for (let i = 0; i < 2; i++) {
+        let cost = 0;
         if (i ===0) {
             service1 = prompt("Какая нужна дополнительная услуга 1?"); 
-            servicePrise1= +prompt("Сколько будет стоить данная услуга?");
-            while(!isNumber(servicePrise1)){
-                servicePrise1= +prompt("Сколько будет стоить данная услуга?");
-            }
         } else {
             service2 = prompt("Какая нужна дополнительная услуга 2?");
-            servicePrise2= +prompt("Сколько будет стоить данная услуга?");
-            while(!isNumber(servicePrise2)){
-                servicePrise2= +prompt("Сколько будет стоить данная услуга?");
-            }
         }
-        sum = servicePrise1 + servicePrise2;
-    }
-    return sum;
+        do {
+            cost = prompt("Сколько будет стоить данная услуга?");
+        } while(!isNumber(cost));
+        sum += +cost;
+        }
+        return sum;
 };
 
 function getFullPrice() {
@@ -86,7 +82,6 @@ fullPrice = getFullPrice();
 title = getTitle();
 servicePercentPrice = getServicePercentPrice();
 getRollbackMessage();
-
 
 
 console.log("allServicePrices", allServicePrices);
