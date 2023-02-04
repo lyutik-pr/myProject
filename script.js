@@ -1,21 +1,51 @@
 'use strict';
 
-let title = prompt("Как называется ваш проект?", "верстка сайта");
-let screens = prompt("Какие типы экранов нужно разработать?", "Простые, Сложные, Интерактивные");
-let screenPrice = +prompt("Сколько будет стоить данная работа?", 12000);
-let adaptive = confirm("Нужен ли адаптив на сайте?");
-let service1 = confirm("Нужна ли дополнительная услуга 1?");
-let servicePrice1 = +prompt("Сколько будет стоить данная услуга?", 1000);
-let service2 = confirm("Нужна ли дополнительная услуга 2?");
-let servicePrice2 = +prompt("Сколько будет стоить данная услуга?", 3000);
+let title;
+let screens;
+let screenPrice;
+let adaptive;
+let service1;
+let servicePrise1;
+let service2;
+let servicePrise2;
 let allServicePrices;
 let fullPrice;
-let rollback = +prompt("Процент отката посреднику за работу", 11);
+let rollback;
 let servicePercentPrice;
-let rollbackMessage;
+
+const isNumber = function (num){
+    return !isNaN(parseFloat(num)) && isFinite(num);
+};
+
+const asking = function () {
+    title = prompt("Как называется ваш проект?", "верстка сайта");
+    screens = prompt("Какие типы экранов нужно разработать?", "Простые, Сложные, Интерактивные");
+    do{
+        screenPrice = +prompt("Сколько будет стоить данная работа?");
+    } while(!isNumber(screenPrice));
+    adaptive = confirm("Нужен ли адаптив на сайте?");
+    rollback = +prompt("Процент отката посреднику за работу", 11);
+};
 
 const getAllServicePrices = function () {
-    return service1 * servicePrice1 + service2 * servicePrice2;
+    let sum = 0;
+    for (let i = 0; i < 2; i++) {
+        if (i ===0) {
+            service1 = prompt("Какая нужна дополнительная услуга 1?"); 
+            servicePrise1= +prompt("Сколько будет стоить данная услуга?");
+            while(!isNumber(servicePrise1)){
+                servicePrise1= +prompt("Сколько будет стоить данная услуга?");
+            }
+        } else {
+            service2 = prompt("Какая нужна дополнительная услуга 2?");
+            servicePrise2= +prompt("Сколько будет стоить данная услуга?");
+            while(!isNumber(servicePrise2)){
+                servicePrise2= +prompt("Сколько будет стоить данная услуга?");
+            }
+        }
+        sum = servicePrise1 + servicePrise2;
+    }
+    return sum;
 };
 
 function getFullPrice() {
@@ -50,15 +80,16 @@ const getRollbackMessage = function(){
     }
 };
 
+asking();
 allServicePrices = getAllServicePrices();
 fullPrice = getFullPrice();
 title = getTitle();
 servicePercentPrice = getServicePercentPrice();
-rollbackMessage = getRollbackMessage();
+getRollbackMessage();
 
 
 
-console.log(allServicePrices);
+console.log("allServicePrices", allServicePrices);
 console.log(fullPrice);
 console.log(servicePercentPrice);
 console.log(title, typeof title);
